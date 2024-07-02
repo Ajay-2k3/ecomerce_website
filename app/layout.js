@@ -1,8 +1,13 @@
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navabar";
+import Navbar from "./components/Navabar/page";
+import Login from "./login/page";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const poppins = Poppins({ 
+  subsets: ["latin"],
+  weight: ["300"],
+ });
 
 export const metadata = {
   title: "Create Next App",
@@ -12,9 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar/>
-        {children} 
+      <body className={poppins.className}>
+        <Navbar className="fixed"/> 
+        {children}
         </body>
     </html>
   );
