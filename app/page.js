@@ -1,8 +1,24 @@
+/* eslint-disable react/react-in-jsx-scope */
+"use client"
 
+import BannerSlider from "./components/bannerSlider/page";
+import ProductCard from "./components/productContainer/page";
 
 export default function Home() {
+
   return (
-    <div className=" h-lvh m-0 flex flex-col bg-white">
+    
+    <div className="h-full m-0 flex flex-col bg-white relative ">
+      {/* BannerSlider at the top */}
+      <div className="order-1">
+        <BannerSlider />
+     
+      </div>
+      
+            {/* ProductCard below the BannerSlider */}
+      <div className="order-2 flex-grow mt-4 p-4 pb-7">
+        <ProductCard />  
+      </div>
     </div>
   );
 }
