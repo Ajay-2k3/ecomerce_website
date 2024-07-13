@@ -3,7 +3,7 @@
 import { MongoClient } from 'mongodb';
 
 const mongoUri = 'mongodb://localhost:27017';
-const dbName = 'yourDatabaseName'; // Replace with your database name
+const dbName = 'shopZZ'; // Replace with your database name
 const collectionName = 'products';
 
 export const GET = async (req) => {
