@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+"use client"
 
 import React, { useState, useEffect } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Divider, Grid, Typography } from '@mui/material';
-import all_product from '@/public/Assets/all_product';
-import Clip from '@mui/material'
 
-const item = all_product;
+
+
 
 const ProductCard = () => {
   const [Pdata, setData] = useState([]);
