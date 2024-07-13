@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // src/client/components/BannerSlider.js
 "use client"
 
