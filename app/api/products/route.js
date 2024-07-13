@@ -2,7 +2,7 @@
 
 import { MongoClient } from 'mongodb';
 
-const mongoUri = 'mongodb://localhost:27017';
+const mongoUri = process.env.NEXTAUTH_URL;
 const dbName = 'shopZZ'; // Replace with your database name
 const collectionName = 'products';
 
