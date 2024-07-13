@@ -12,6 +12,7 @@ function createAccount() {
     const [email,setEmail] = useState('');  
     const [password,setPassword] = useState('');
     const [error,seterror] = useState('');
+    const [agree, setAgree] = useState(false);
 
     const route =useRouter();
     
@@ -52,6 +53,7 @@ function createAccount() {
                     name,
                     email,
                     password,
+                    agree,
                 }),
             });
             if (res.ok){
@@ -97,7 +99,10 @@ function createAccount() {
                             </div>
                             <div className='flex justify-between gap-4 items-center mb-6 max-md:w-5/6'>
                                 <div className='flex justify-center items-center'>
-                                    <input type="checkbox" name="remember" id="rememberMe" /> <label htmlFor="remmber" className=' max-md:text-[10px] text-[12px] font-extrabold ' >I agree to the all terms & condition</label>
+                                    <input type="checkbox"
+                                    id="rememberMe"
+                                    checked={agree}
+                                    onChange={(e) => setAgree(e.target.checked)} /> <label htmlFor="remmber" className=' max-md:text-[10px] text-[12px] font-extrabold ' >I agree to the all terms & condition</label>
                                 </div>
                             </div>
                             <div className='flex w-3/4 justify-center items-center max-md:w-5/6'>

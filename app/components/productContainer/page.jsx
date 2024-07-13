@@ -30,16 +30,7 @@ const ProductCard = () => {
 
   return (
     <div className='flex flex-col align-middle relative'>
-      <div className='flex w-full h-5'>
-      <Divider sx={{height:2}} textAlign="left" className='bg-gray-800 w-full'>
-        <Typography className=' bg-white text-stone-950 text-center relative bottom-5 p-2'>
-           Latest
-        </Typography>
-        </Divider>
-    </div>
     <div className='grid grid-rows-1 grid-flow-col gap-2 justify-between w-full overflow-scroll h-fit p-4 scrollbar-hide '>
-
-
       {Pdata.map((item, i) => (
         <ProductItem key={i} item={item} />
       ))} 

@@ -14,11 +14,9 @@ export default function Home() {
         <BannerSlider />
      
       </div>
-      
-            {/* ProductCard below the BannerSlider */}
-      <div className="order-2 flex-grow mt-4 p-4 pb-7">
+      <section className="order-2 flex-grow mt-4 p-4 pb-7">
         <ProductCard />  
-      </div>
+      </section>
     </div>
   );
 }

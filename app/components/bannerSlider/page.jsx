@@ -32,7 +32,7 @@ const BannerSlider = () => {
             autoPlay={true}
             interval={3000}
 
-            className='mt-6'
+            className='mt-6 '
         >
             {items.map((item, i) => (
                 <BannerItem key={i} item={item} />
@@ -43,7 +43,7 @@ const BannerSlider = () => {
 
 const BannerItem = ({ item }) => {
     return (
-        <Paper style={{ position: 'relative' }}>
+        <Paper style={{ position: 'relative' }} className='bg-teal-200'>
             <img src={item.image} alt={item.name} style={{ width: '100%', height: 'auto' }} />
             <div style={{ position: 'absolute', bottom: '20px', left: '20px', color: 'white' }}>
             </div>

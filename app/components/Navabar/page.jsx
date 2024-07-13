@@ -4,18 +4,22 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Dropdown,DropdownItem,DropdownTrigger,DropdownMenu } from '@nextui-org/dropdown';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import UserInfo from '../userInfo/page';
+import { useSession,signIn,signOut } from 'next-auth/react';
+import { Avatar } from "@mui/material";
+import {Badge} from "@nextui-org/react"
+import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
+
 
 function Navbar() {
 
+    const { data: session } = useSession();
     const [isOpen] = useState(false);
 
   return (
     <div className=' w-full top-0 flex bg-custom-gradient justify-between items-center  text-slate-50 p-1 relative'>
         <div className='flex text-slate-50'>
             <div className=' ml-6 flex justify-between gap-1 mr-16 self-center ' >
-                <img src="/logo_big.png" alt="logo" 
-                className='w-10 h-10 max-md:w-5 max-md:h-5'
-                />
                 <h1 className='flex-grow font-semibold m-0 p-0 w-0 max-md:text-sm content-center text-2xl'>Shopzz</h1>
             </div>
             <div className=' relative  border-slate-50 ml-28 max-md:ml-1 mr-5 max-md:mr-3 self-center'>
@@ -27,7 +31,7 @@ function Navbar() {
                 <input type="search" name="search_item" id="search_" placeholder=''
                 className='h-9 max-md:h-7 border-none rounded-lg outline-none placeholder:p-6 text-slate-950 placeholder:stroke-slate-300 pl-9 pr-20 max-md:w-56'
                 /> 
-                <button type="search" className=" max-md:h-7 max-md:text-center  absolute  -end-0.5 bg-gradient-to-r from-sky-400 to-blue-700  hover:from-blue-900 hover:to-sky-600 text-slate-50 outline-none  font-medium rounded-r-lg text-sm px-4 max-md:py-1 py-2 ">Search</button>
+                <button type="search" className=" max-md:h-7 max-md:text-center  absolute  -end-0.5 bg-orange-600  text-slate-50 outline-none  font-medium rounded-r-lg text-sm px-4 max-md:py-1 py-2 ">Search</button>
             </div>
         </div>
         <div className=' lg:flex hidden '>
@@ -49,21 +53,32 @@ function Navbar() {
         <div className='flex flex-col mr-5'>
 
             <div className=' flex justify-between gap-6 items-center'>
-                <div className='max-sm:hidden flex '>
-                    <Link href="/login">
-                    <button  type="button" className=' border-slate-50 border-solid p-2 border-2 rounded-3xl pl-6 pr-6 font-bold hover:relative hover:bottom-0.5'>Login</button>
-                    </Link>  
-                    
+                <div className='max-md:hidden flex '>  
+                    {session ? (
+                            <Popover placement="bottom">
+                            <PopoverTrigger>
+                                <Avatar/>
+                            </PopoverTrigger>
+                            <PopoverContent className="flex flex-col py-2 gap-3 w-52 bg-custom-gradient " >
+                            <Avatar className=" self-center"></Avatar>
+                            <button onClick={() => signOut()} className="text-red-600 hover:text-white hover:bg-red-600 flex w-full rounded-lg justify-center text-center p-3 font-bold">Sign Out</button>
+                            </PopoverContent>
+                          </Popover>
+
+                        ) : (
+                        <>
+                            <button onClick={() => signIn()} type="button" className=' border-slate-50 border-solid p-2 border-2 rounded-3xl pl-6 pr-6 font-bold hover:relative hover:bottom-0.5'>Login</button>
+                        </>
+                    )}
                 </div>
-                <div className=' lg:flex hidden  items-center gap-9 justify-between '>
-                    <svg className="h-8 w-8 text-red-500 hover:fill-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round" >  <path className=' hover:bg-red-500' d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg> 
-                </div>
-                <div className=' md:right-3 inline-flex flex-col max-md:hidden  relative left-2 ml-0'> 
-                        <button type="button" className=' relative hover:bottom-1'>
+
+                <div className=' md:right-3 inline-flex flex-col max-md:hidden  relative left-2 ml-0 text-center'> 
+                       <Badge content="5" size="sm" color="primary" className='text-center relative'> 
+                        <button type="button" className=' relative hover:bottom-1 w-4 h-6'>
                         <ShoppingCartIcon 
                         className='self-center'/> 
-                            
-                        </button>  
+                          
+                        </button>  </Badge> 
                     
                 </div>
  
@@ -77,8 +92,8 @@ function Navbar() {
                                      
                       </DropdownTrigger>
                       <DropdownMenu >
-                        <DropdownItem>
-                            <Link href="/login">Login</Link>                     
+                        <DropdownItem color='white' className='hover:bg-black p-0 max-md:flex hidden'>
+                            <UserInfo/>
                         </DropdownItem>
                         <DropdownItem>
                             <Link href="/"> Home</Link>
