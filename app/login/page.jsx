@@ -1,10 +1,9 @@
-/* eslint-disable react/no-unknown-property */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@nextui-org/react';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 const Login = () => {
@@ -12,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
+    const { data: session, status } = useSession();
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -28,14 +28,18 @@ const Login = () => {
                 setError("Invalid Credentials");
                 return;
             }
-
-            router.replace("/"); // Use replace instead of push to prevent navigation history clutter
         } catch (error) {
             console.error("Error during sign in:", error);
             setError("An error occurred. Please try again.");
         }
     };
-    
+
+    useEffect(() => {
+        if (status === "authenticated") {
+            router.replace("/"); // Use replace instead of push to prevent navigation history clutter
+        }
+    }, [status, router]);
+
     return (
         <div className="flex fixed justify-center items-center content-center min-h-screen w-screen flex-1 bg-gray-200 px-20 max-md:px-2 translate-x-2 transition-transform">
             <div className="w-2/3 text-center max-w-4xl max-sm:w-4/5 max-md:w-2/3 bg-white rounded-2xl flex shadow-2xl shadow-slate-600">

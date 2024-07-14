@@ -50,6 +50,7 @@ const authOptions = {
             if (user) {
                 token.id = user.id;
                 token.email = user.email;
+                token.name = user.name; 
                 token.rememberMe = user.rememberMe;
             }
             return token;
@@ -57,6 +58,7 @@ const authOptions = {
         async session({ session, token }) {
             session.user.id = token.id;
             session.user.email = token.email;
+            session.user.name = token.name; 
 
             if (token.rememberMe) {
                 session.expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(); // 30 days

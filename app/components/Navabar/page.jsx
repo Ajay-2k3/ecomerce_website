@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Dropdown,DropdownItem,DropdownTrigger,DropdownMenu } from '@nextui-org/dropdown';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import UserInfo from '../userInfo/page';
-import { useSession,signIn,signOut } from 'next-auth/react';
+import { useSession,signIn } from 'next-auth/react';
 import { Avatar } from "@mui/material";
 import {Badge} from "@nextui-org/react"
 import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
@@ -60,8 +60,7 @@ function Navbar() {
                                 <Avatar/>
                             </PopoverTrigger>
                             <PopoverContent className="flex flex-col py-2 gap-3 w-52 bg-custom-gradient " >
-                            <Avatar className=" self-center"></Avatar>
-                            <button onClick={() => signOut()} className="text-red-600 hover:text-white hover:bg-red-600 flex w-full rounded-lg justify-center text-center p-3 font-bold">Sign Out</button>
+                                <UserInfo/>
                             </PopoverContent>
                           </Popover>
 
