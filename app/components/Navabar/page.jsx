@@ -88,7 +88,7 @@ function Navbar() {
                     {session ? (
                             <Popover placement="bottom">
                             <PopoverTrigger>
-                                <Avatar className='bg-black'/>
+                                <Avatar className='bg-black hover:cursor-pointer'/>
                             </PopoverTrigger>
                             <PopoverContent className="flex flex-col py-2 gap-3 w-52 bg-transparent  border-medium shadow-lg shadow-slate-500 border-white backdrop-blur-2xl text-black " >
                                 <UserInfo/>

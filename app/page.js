@@ -10,7 +10,7 @@ export default function Home() {
     
     <div className="h-full m-0 flex flex-col bg-white relative scrollbar-hide">
       {/* BannerSlider at the top */}
-      <div className="order-1 mx-3 rounded-lg">
+      <div className="order-1 mx-7 rounded-xl">
         <BannerSlider />
      
       </div>

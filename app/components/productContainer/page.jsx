@@ -39,7 +39,7 @@ const ProductCard = () => {
 const ProductItem = ({ item }) => {
   return (
     <Grid item className=''>
-    <Card  className=' justify-between flex flex-col max-md:w-28 w-56 max-md:h-56 h-96 border-medium text-slate-950 shadow-slate-500 bg-slate-300 shadow-lg relative'>
+    <Card  className=' justify-between flex flex-col max-md:w-28 w-56 max-md:h-56 h-96 border-medium hover:border-black text-slate-950 shadow-slate-500 bg-slate-300 shadow-lg relative'>
       <CardMedia 
         component="img"
         height="144"
