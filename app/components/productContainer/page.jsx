@@ -27,7 +27,7 @@ const ProductCard = () => {
 
   return (
     <div className='flex flex-col align-middle relative'>
-    <div className='grid gap-2 grid-cols-6 max-md:grid-cols-4 max-sm:grid-cols-2 justify-between self-center w-fit 0 h-fit p-4 '>
+    <div className='grid gap-6 grid-cols-6 max-md:grid-cols-4 max-sm:grid-cols-2 justify-between self-center w-fit 0 h-fit p-4 '>
       {products.map((item, i) => (
         <ProductItem key={i} item={item} />
       ))} 
