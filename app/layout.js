@@ -17,13 +17,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en " className=" scrollbar-hide ">
       <body className={poppins.className}>
         <AuthProvider>
           <header className="sticky top-0 w-full bg-white z-50">
             <Navbar />
           </header>
-          <main>
+          <main >
             {children}
           </main>
         </AuthProvider>

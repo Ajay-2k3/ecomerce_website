@@ -28,11 +28,11 @@ export default function UserInfo() {
         <div className="m-0">
             {session ? (
                 <div className="flex flex-col gap-3">
-                    <Avatar className="self-center">
+                    <Avatar  className="self-center bg-black">
                         {session.user.name ? session.user.name[0].toUpperCase() : ""}
                     </Avatar>
                     <div>
-                        <h2 className="text-center font-bold">{session.user.name}</h2>
+                        <h2 className="text-center font-bold text-black">{session.user.name}</h2>
                         <p className="text-center text-gray-600">{session.user.email}</p>
                     </div>
                     <button onClick={() => signOut()} className="text-red-600 hover:text-white hover:bg-red-600 flex w-full rounded-lg justify-center text-center p-3 font-bold">

@@ -9,29 +9,26 @@ import {Tooltip} from "@nextui-org/tooltip";
 
 
 const ProductCard = () => {
-  const [Pdata, setData] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
       try {
-        const response = await fetch('/api/products');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
-        setData(result);
+        const response = await fetch('/api/product');
+        const data = await response.json();
+        setProducts(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching products:', error);
       }
     };
 
-    fetchData();
+    fetchProducts();
   }, []);
 
   return (
     <div className='flex flex-col align-middle relative'>
-    <div className='grid grid-rows-1 grid-flow-col gap-2 justify-between w-screen overflow-scroll h-fit p-4 scrollbar-hide '>
-      {Pdata.map((item, i) => (
+    <div className='grid gap-2 grid-rows-3 grid-cols-6  justify-between self-center w-fit 0 h-fit p-4 '>
+      {products.map((item, i) => (
         <ProductItem key={i} item={item} />
       ))} 
     </div> 
@@ -46,20 +43,17 @@ const ProductItem = ({ item }) => {
       <CardMedia 
         component="img"
         height="144"
-        width="160"
-        image={item.images[0]}
+        width="200"
+        image={item.masterVariant.images[0].url}
       />
       <CardContent className=' py-1'>
-      <Tooltip content={item.title} className=' text-black'>
+      <Tooltip content={item.name['en-US']} className=' text-black'>
         <h2 className='text-sm max-sm:text-[10px]
         line-clamp-1
-        font-bold flex-grow '>{item.title}</h2>
+        font-bold flex-grow '>{item.name['de-DE']}</h2>
         </Tooltip>
-        <h3 className='flex-grow text-sm max-md:text-[9px] '>price : ${item.price}</h3>
       </CardContent >
       <CardActions className='flex max-sm: align-bottom relative py-1 bottom-0'>
-        <button  className=' max-md:text-[9px] w-full max-sm:p-1 max-sm:mb-1 text-cyan-50 bg-blue-700 p-3 rounded-lg'> Add cart</button>
-        <button className=' max-md:text-[9px] w-full max-sm:p-1 max-sm:mb-1 text-cyan-50 bg-orange-600 py-3 px-7  rounded-lg'> Buy</button>
       </CardActions>
     </Card>
     </Grid>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 // my-app/app/api/auth/[...nextauth]/route.js
 

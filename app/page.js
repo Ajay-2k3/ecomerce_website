@@ -8,9 +8,9 @@ export default function Home() {
 
   return (
     
-    <div className="h-full m-0 flex flex-col bg-white relative ">
+    <div className="h-full m-0 flex flex-col bg-white relative scrollbar-hide">
       {/* BannerSlider at the top */}
-      <div className="order-1">
+      <div className="order-1 mx-3 rounded-lg">
         <BannerSlider />
      
       </div>
