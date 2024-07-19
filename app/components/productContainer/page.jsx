@@ -27,7 +27,7 @@ const ProductCard = () => {
 
   return (
     <div className='flex flex-col align-middle relative'>
-    <div className='grid gap-2 grid-rows-3 grid-cols-6  justify-between self-center w-fit 0 h-fit p-4 '>
+    <div className='grid gap-2 grid-cols-6 max-md:grid-cols-4 max-sm:grid-cols-2 justify-between self-center w-fit 0 h-fit p-4 '>
       {products.map((item, i) => (
         <ProductItem key={i} item={item} />
       ))} 
@@ -39,7 +39,7 @@ const ProductCard = () => {
 const ProductItem = ({ item }) => {
   return (
     <Grid item className=''>
-    <Card  className=' justify-between flex flex-col max-md:w-28 w-56 max-md:h-56 h-96 border-medium hover:border-black text-slate-950 shadow-slate-500 bg-slate-300 shadow-lg relative'>
+    <Card  className='box-s justify-between max-w-56 min-w-28 flex flex-col  h-fit border-medium hover:border-black text-slate-950 shadow-slate-500 bg-slate-200 shadow-lg relative'>
       <CardMedia 
         component="img"
         height="144"
@@ -52,6 +52,7 @@ const ProductItem = ({ item }) => {
         line-clamp-1
         font-bold flex-grow '>{item.name['de-DE']}</h2>
         </Tooltip>
+        <span className='text-sm max-sm:text-[8px] line-clamp-1 font-bold flex-grow'>Price: ${item.masterVariant.prices[0].value.centAmount/100}</span>
       </CardContent >
       <CardActions className='flex max-sm: align-bottom relative py-1 bottom-0'>
       </CardActions>

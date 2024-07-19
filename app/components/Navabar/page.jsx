@@ -24,7 +24,7 @@ function Navbar() {
     const [isOpen] = useState(false);
 
   return (
-    <div className=' w-full top-0 flex bg-white justify-between items-center  text-black py-1 relative'>
+    <div className=' shadow-md shadow-slate-400  w-full top-0 flex bg-white justify-between items-center  text-black py-1 relative'>
         <div className='flex text-black'>
             <div className=' ml-3 flex justify-between gap-1 mr-16 self-center ' >
                 <h1 className='flex-grow font-semibold m-0 p-0 w-0 max-md:text-sm content-center text-2xl'>Shopzz</h1>
@@ -88,7 +88,9 @@ function Navbar() {
                     {session ? (
                             <Popover placement="bottom">
                             <PopoverTrigger>
-                                <Avatar className='bg-black hover:cursor-pointer'/>
+                                <Avatar className='bg-black hover:cursor-pointer'>
+                                {session.user.name ? session.user.name[0].toUpperCase() : ""}
+                                </Avatar>
                             </PopoverTrigger>
                             <PopoverContent className="flex flex-col py-2 gap-3 w-52 bg-transparent  border-medium shadow-lg shadow-slate-500 border-white backdrop-blur-2xl text-black " >
                                 <UserInfo/>
@@ -112,7 +114,7 @@ function Navbar() {
                     
                 </div>
  
-                <div className=' relative  -end-5 lg:hidden rounded-lg m-0'>
+                <div className=' relative  -end-3 lg:hidden rounded-lg m-0'>
                 <Popover placement="bottom" className='relative' >
                             
                 <  PopoverTrigger>
