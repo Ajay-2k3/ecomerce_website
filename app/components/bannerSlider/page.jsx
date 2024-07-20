@@ -34,7 +34,7 @@ const BannerSlider = () => {
             autoPlay={true}
             interval={3000}
 
-            className='mt-6 '
+            className='mt-6  '
         >
             {items.map((item, i) => (
                 <BannerItem key={i} item={item} />
