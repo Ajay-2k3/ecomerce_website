@@ -5,7 +5,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Grid } from '@mui/material';
-import addToCartButton from '@/app/components/addToCartButton/page';
 
 const ProductCard = () => {
   const [products, setProducts] = useState([]);
@@ -36,14 +35,7 @@ const ProductCard = () => {
 };
 
 const ProductItem = ({ item }) => {
-  const handleAddToCart = async () => {
-    try {
-      const data = await addToCartButton(item.id, 1);
-      console.log('Product added to cart:', data);
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-    }
-  };
+
 
   return (
     <Grid item className=''>
@@ -62,7 +54,7 @@ const ProductItem = ({ item }) => {
           </span>
         </CardContent>
         <CardActions className='flex w-full align-bottom relative py-1 bottom-0'>
-          <button onClick={handleAddToCart} className='transition-colors duration-300 ease-in-out  hover:bg-blue-600 button-class flex max-sm:text-xs max-md:text-sm max-lg:text-medium text-center bg-blue-500 text-white rounded-md p-1 self-center'>
+          <button  className='transition-colors duration-300 ease-in-out  hover:bg-blue-600 button-class flex max-sm:text-xs max-md:text-sm max-lg:text-medium text-center bg-blue-500 text-white rounded-md p-1 self-center'>
             Add to Cart
           </button>
         </CardActions>
