@@ -7,7 +7,7 @@ export async function GET(req, res) {
 
   try {
     const productsUri = requestBuilder.productProjections
-      .perPage(20)
+      .perPage(30)
       .withTotal()
       .build();
 
