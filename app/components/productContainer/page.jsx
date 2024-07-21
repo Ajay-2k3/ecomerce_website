@@ -47,6 +47,7 @@ const ProductItem = ({ item }) => {
           image={item.masterVariant.images[0].url}
           alt={item.name['de-DE']}
         />
+
         <CardContent className='py-1'>
           <h2 className='text-sm max-sm:text-[10px] line-clamp-1 font-bold flex-grow'>{item.name['de-DE']}</h2>
           <span className='text-sm max-sm:text-[8px] line-clamp-1 font-bold flex-grow'>

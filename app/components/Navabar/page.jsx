@@ -15,36 +15,68 @@ import Kidscartegories from '@/app/components/kidscartegories/page'
 function Navbar() {
     const [open, setOpen] = useState(false);
     const { data: session } = useSession();
-    const [isOpen] = useState(false);
+    const [openMenu, setOpenMenu] = useState(false);
+    
 
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
+    const toggleDrawerMenu = (newOpen) => () => {
+        setOpenMenu(newOpen);
+    };
 
     return (
         <div className='shadow-md shadow-slate-400 w-full top-0 flex bg-white justify-between items-center text-black py-2 relative'>
-            <div className='flex text-black'>
+            <div className='flex  text-black'>
+                <div className='self-center lg:hidden rounded-lg ml-3'>
+                            <div className=' flex'>
+                            <button onClick={toggleDrawerMenu(true)} className=' self-center' >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                            </button>
+                            <Drawer open={openMenu} onClose={toggleDrawerMenu(false)} anchor='left'>
+                                <div className='py-8 px-2 flex w-64 relative flex-col'>
+                                <UserInfo />
+                                    <Accordion className='text-white'>
+                                        <AccordionItem key="anchor" aria-label="Anchor" title={<span className="text-black font-medium text-medium">Search</span>} className='text-white'>
+                                            <form className="mx-auto relative">
+                                                <label htmlFor="default-search" className="mb-2 text-xs font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                                <div className="relative">
+                                                    <input type="search" id="default-search" className="block w-40 p-1 pr-5 text-sm text-gray-900 border-black border-solid rounded-lg bg-gray-50 border-small" placeholder="Search" required />
+                                                    <button className='absolute bottom-0 py-2 px-1.5 rounded-r-lg left-36 bg-blue-600 border-none'>
+                                                        <IoSearchSharp className='size-xs' />
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </AccordionItem>
+                                    </Accordion>
+                                    <Link href="/" className='text-left text-md self-start font-semibold hover:bg-black hover:text-white rounded-lg p-2 pl-3 w-full m-1 ml-2'>Home</Link>
+                                    <Link href="#" className='text-left text-md self-start font-semibold hover:bg-black hover:text-white rounded-lg p-2 pl-3 w-full m-1 ml-2'>Cart</Link>    
+                                    <Link href="#" className='text-left text-md self-start font-semibold hover:bg-black hover:text-white rounded-lg p-2 pl-3 w-full m-1 ml-2'>Order</Link>
+                                </div>
+                            </Drawer>
+                        </div>
+                </div>
                 <div className='ml-3 flex justify-between gap-1 mr-16 self-center'>
-                    <h1 className='flex-grow font-semibold m-0 p-0 w-0 max-md:text-sm content-center text-2xl'>shopzz</h1>
+                    <h1 className='flex-grow font-semibold m-0 p-0 w-0 max-md:text-md content-center text-2xl'>shopzz</h1>
                 </div>
             </div>
-            <div className='lg:flex hidden relative'>
+            <div className='lg:flex  hidden relative'>
                 <ul className='md:flex gap-5 list-none font-semibold hidden text-black'>
                     <li className='py-1 px-2 rounded-md hover:text-white hover:bg-blue-600'>
                         <Link href="/">Home</Link>
                     </li>
                     <li className='py-1 px-2 rounded-md hover:text-white hover:bg-blue-600'>
-                        <Tooltip color='bg-custom-gradient' content={<MensCartegories/>}>
+                        <Tooltip color='bg-custom-gradient' offset={18} content={<MensCartegories/>}>
                             <a href="#">Men</a>
                         </Tooltip>
                     </li>
                     <li className='py-1 px-2 rounded-md hover:text-white hover:bg-blue-600'>
-                    <Tooltip color='bg-custom-gradient' content={<WomensCartegories/>}>
+                    <Tooltip color='bg-custom-gradient'  offset={18}  content={<WomensCartegories/>}>
                         <a href="#">Women</a>
                     </Tooltip>
                     </li>
                     <li className='py-1 px-2 rounded-md hover:text-white hover:bg-blue-600'>
-                    <Tooltip color='bg-custom-gradient' content={<Kidscartegories/>}>
+                    <Tooltip color='bg-custom-gradient'  offset={18}  content={<Kidscartegories/>}>
                         <a href="#">Kids</a>
                     </Tooltip>
                     </li>
@@ -63,12 +95,12 @@ function Navbar() {
                 </ul>
             </div>
             <div className='flex flex-col mr-5'>
-                <div className='flex justify-between gap-6 items-center'>
-                    <div className='max-md:hidden flex'>
+                <div className='flex justify-between max-md:gap-2 gap-6 items-center'>
+                    <div className=' flex'>
                         {session ? (
                             <Popover placement="bottom">
                                 <PopoverTrigger>
-                                    <Avatar className='bg-black hover:cursor-pointer'>
+                                    <Avatar className='bg-black hover:cursor-pointer size-8'>
                                         {session.user.name ? session.user.name[0].toUpperCase() : ""}
                                     </Avatar>
                                 </PopoverTrigger>
@@ -77,55 +109,18 @@ function Navbar() {
                                 </PopoverContent>
                             </Popover>
                         ) : (
-                            <button onClick={() => signIn()} type="button" className='border-slate-50 border-solid p-2 border-2 rounded-3xl pl-6 pr-6 font-bold hover:relative hover:bottom-0.5'>
+                            <button onClick={() => signIn()} type="button" className='border-slate-950 hover:text-white hover:bg-slate-950 border-solid p-2 border-2 rounded-3xl pl-6 pr-6 font-bold hover:relative hover:bottom-0.5'>
                                 Login
                             </button>
                         )}
                     </div>
-                    <div className='md:right-3 inline-flex flex-col max-md:hidden relative  ml-3 text-center'>
+                    <div className='md:right-3 inline-flex flex-col  relative  ml-2 text-center'>
                         <button type="button" className='relative w-4 h-6'>
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                         </button>
                     </div>
-                    <div className='relative -end-3 lg:hidden rounded-lg m-0'>
-                        <Popover placement="bottom" className='relative'>
-                            <PopoverTrigger>
-                                {!isOpen ? (
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu">
-                                        <line x1="4" x2="20" y1="12" y2="12" />
-                                        <line x1="4" x2="20" y1="6" y2="6" />
-                                        <line x1="4" x2="20" y1="18" y2="18" />
-                                    </svg>
-                                ) : (
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-square-x">
-                                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                                        <path d="m15 9-6 6" />
-                                        <path d="m9 9 6 6" />
-                                    </svg>
-                                )}
-                            </PopoverTrigger>
-                            <PopoverContent className="sticky top-0 flex flex-col py-2 gap-3 w-52 bg-white bg-opacity-35 border-medium shadow-lg shadow-slate-500 border-white backdrop-blur-2xl text-black">
-                                <UserInfo />
-                                <Accordion className='text-white'>
-                                    <AccordionItem key="anchor" aria-label="Anchor" title={<span className="text-black font-medium text-medium">Search</span>} className='text-white'>
-                                        <form className="mx-auto relative">
-                                            <label htmlFor="default-search" className="mb-2 text-xs font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                                            <div className="relative">
-                                                <input type="search" id="default-search" className="block w-40 p-1 pr-5 text-sm text-gray-900 border-black border-solid rounded-lg bg-gray-50 border-small" placeholder="Search" required />
-                                                <button className='absolute bottom-0 py-2 px-1.5 rounded-r-lg left-36 bg-blue-600 border-none'>
-                                                    <IoSearchSharp className='size-xs' />
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </AccordionItem>
-                                </Accordion>
-                                <Link href="/" className='text-left text-md self-start font-semibold hover:bg-black hover:text-white rounded-lg p-2 pl-3 w-full m-1 ml-2'>Home</Link>
-                                <Link href="#" className='text-left text-md self-start font-semibold hover:bg-black hover:text-white rounded-lg p-2 pl-3 w-full m-1 ml-2'>Cart</Link>
-                                <Link href="#" className='text-left text-md self-start font-semibold hover:bg-black hover:text-white rounded-lg p-2 pl-3 w-full m-1 ml-2'>Order</Link>
-                            </PopoverContent>
-                        </Popover>
-                    </div>
                 </div>
+                
             </div>
         </div>
     );
