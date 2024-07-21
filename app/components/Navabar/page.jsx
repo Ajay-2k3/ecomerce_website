@@ -10,7 +10,7 @@ import {  Tooltip, Popover, PopoverTrigger, PopoverContent, Accordion, Accordion
 import { IoSearchSharp } from "react-icons/io5";
 import MensCartegories from '@/app/components/mensCartegories/page'
 import WomensCartegories from '@/app/components/womensCartegories/page'
-
+import Kidscartegories from '@/app/components/kidscartegories/page'
 
 function Navbar() {
     const [open, setOpen] = useState(false);
@@ -44,7 +44,9 @@ function Navbar() {
                     </Tooltip>
                     </li>
                     <li className='py-1 px-2 rounded-md hover:text-white hover:bg-blue-600'>
+                    <Tooltip color='bg-custom-gradient' content={<Kidscartegories/>}>
                         <a href="#">Kids</a>
+                    </Tooltip>
                     </li>
                     <li className='py-1 px-2 rounded-md hover:text-white hover:bg-blue-600'>
                         <div>
